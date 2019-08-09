@@ -1,0 +1,44 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<div class="container">
+
+    <% if(items.length === 0) { %>
+        <p class="alert alert-danger">There is no items</p>
+    <% } else { %>
+    
+        <table>
+            <thead>
+                <td>no</td>
+                <td>Product name</td>
+                <td>Price</td>
+                <td>Amount</td>
+                <td>Total</td>
+                <td></td>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < items.length; i++) { %>
+                    <tr>
+                        <td> <%= i+1 %> </td>
+                        <td> <a href="/product/<%= items[i].productId %>"><%= items[i].name %></a> </td>
+                        <td> <%= items[i].price %> $ </td>
+                        <form method="POST">
+                            <td> <input type="text" name="amount" class="form-control" value="<%= items[i].amount %>"> </td>
+                            <td> <%= items[i].price * items[i].amount %> $ </td>
+                            <td>
+                                <input type="hidden" name="cartId" value="<%= items[i]._id %>">
+                                <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
+                                <a class="btn btn-primary" href="/verify-order?order=<%= items[i]._id %>"> Order </a>
+                                <input type="submit" class="btn btn-danger" value="Delete" formaction="/cart/delete">
+                            </td>
+                        </form>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+</div>
+
+<%- include('parts/footer') %>

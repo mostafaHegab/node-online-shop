@@ -1,0 +1,44 @@
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <%= pageTitle === 'Home' ? 'active' : '' %>">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <% if(isUser) { %>
+        <li class="nav-item <%= pageTitle === 'Cart' ? 'active' : '' %>">
+          <a class="nav-link" href="/cart">Cart</a>
+        </li>
+        <li class="nav-item <%= pageTitle === 'Orders' ? 'active' : '' %>">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+      <% } else { %>
+        <li class="nav-item <%= pageTitle === 'Login' ? 'active' : '' %>">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item <%= pageTitle === 'Signup' ? 'active' : '' %>">
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+      <% } %>
+      <% if(isAdmin) { %>
+      <li class="nav-item <%= pageTitle === 'Add Product' ? 'active' : '' %>">
+        <a class="nav-link" href="/admin/add">Add Product</a>
+      </li>
+      <li class="nav-item <%= pageTitle === 'Manage Orders' ? 'active' : '' %>">
+        <a class="nav-link" href="/admin/orders">Manage Orders</a>
+      </li>
+      <% } %>
+    </ul>
+    <% if(isUser) { %>
+    <form action="/logout" method="POST">
+      <input type="submit" value="Logout" class="btn btn-danger">
+    </form>
+    <% } %>
+  </div>
+  </div>
+</nav>

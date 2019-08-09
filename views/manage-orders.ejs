@@ -1,0 +1,58 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<div class="container">
+
+    <% if(items.length === 0) { %>
+        <p class="alert alert-danger">There is no items</p>
+    <% } else { %>
+    
+        <table>
+            <thead>
+                <td>no</td>
+                <td>Email</td>
+                <td>Product name</td>
+                <td>Price</td>
+                <td>Amount</td>
+                <td>Total</td>
+                <td>Address</td>
+                <td>Status</td>
+                <td></td>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < items.length; i++) { %>
+                    <tr>
+                        <td> <%= i+1 %> </td>
+                        <td><%= items[i].userId %></td>
+                        <td> <a href="/product/<%= items[i].productId %>"><%= items[i].name %></a> </td>
+                        <td> <%= items[i].price %> $ </td>
+                        <td> <%= items[i].amount %> </td>
+                        <td> <%= items[i].price * items[i].amount %> $ </td>
+                        <td> <%= items[i].address %> </td>
+                        <td> <%= items[i].status %> </td>
+                        <td>
+                            <% if (items[i].status === 'pending') { %>
+                            <form style="display: inline-block" method="POST" action="/admin/orders">
+                                <input type="hidden" name="orderId" value="<%= items[i]._id %>">
+                                <input type="hidden" name="status" value="sent">
+                                <input type="submit" class="btn btn-primary" value="Send">
+                            </form>
+                            <% } %>
+                            <% if (items[i].status === 'pending' || items[i].status === 'sent') { %>
+                            <form style="display: inline-block" method="POST" action="/admin/orders">
+                                <input type="hidden" name="orderId" value="<%= items[i]._id %>">
+                                <input type="hidden" name="status" value="complete">
+                                <input type="submit" class="btn btn-success" value="Complete">
+                            </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+</div>
+
+<%- include('parts/footer') %>

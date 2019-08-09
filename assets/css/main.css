@@ -1,0 +1,49 @@
+nav {
+    margin-bottom: 15px;
+}
+
+.row,
+.col {
+    margin-bottom: 15px;
+}
+
+.col {
+    padding: 0 7.5px;
+}
+
+form.filter .row {
+    margin-bottom: 0;
+}
+
+.add-to-cart-form {
+    text-align: center;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+h3 {
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.product-detail h3 {
+    border-bottom: 3px solid #000;
+}
+
+table,
+td {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+body {
+    padding-bottom: 20px;
+}
+
+textarea.form-control {
+    height: 120px;
+    resize: none;
+}
